@@ -1,30 +1,28 @@
 .start-autolingo-skill-container {
     position: absolute;
 
-    right: 25px;
+    right: -10px;
     top: 0px;
 
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.start-autolingo-skill {
-    position: absolute;
-
+.start-autolingo-skill, .final-autolingo-skill {
+    position: relative;
     height: 40px;
-
     cursor: pointer;
-
     transition: .2s;
 }
 
 
-.start-autolingo-skill:hover {
+.start-autolingo-skill:hover, .final-autolingo-skill:hover {
     transform: scale(1.2);
 }
 
-.start-autolingo-skill:active {
+.start-autolingo-skill:active, .final-autolingo-skill:active {
     transform: scale(1.3);
 }
 

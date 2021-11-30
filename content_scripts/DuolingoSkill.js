@@ -9,11 +9,21 @@ export default class DuolingoSkill extends ReactUtils {
         this.skill_node = skill_node;
     }
 
-    start = (start_button_selector) => {
+    start = (start_button_selector, is_final_level) => {
+        this.is_final_level = is_final_level;
+
         this.skill_node.children[0]?.click();
         document.querySelector(`[data-test='${start_button_selector}']`)?.click();
 
-        this.state_machine = setInterval(this.complete_challenge, 10);
+        // for legendary lessons
+        if (this.is_final_level) {
+            document.querySelector('[data-test="cta-button"]')?.click();
+            document.querySelector('[class="WOZnx _275sd _1ZefG KJuUV"]')?.click(); // TODO find something more reliable
+        }
+
+        setTimeout(() => {
+            this.state_machine = setInterval(this.complete_challenge, 10);
+        }, 1000)
     }
 
     end () {
@@ -38,6 +48,7 @@ export default class DuolingoSkill extends ReactUtils {
 
         const status = this.ReactFiber(status_node).return.return.stateNode.props.player.status;
 
+        console.logger(status)
         switch (status) {
             // loading this lesson
             case "LOADING":
@@ -45,6 +56,7 @@ export default class DuolingoSkill extends ReactUtils {
             // lil pop-up at the beginning of practice lessons
             case "SKILL_PRACTICE_SPLASH":
             case "CHECKPOINT_TEST_SPLASH":
+            case "FINAL_LEVEL_DUO":
                 // click START PRACTICE
                 this.current_challenge = new DuolingoChallenge();
                 this.current_challenge.click_next();
@@ -76,6 +88,7 @@ export default class DuolingoSkill extends ReactUtils {
                 break;
             // loading next challenge
             case "SLIDING":
+            case "PARTIAL_XP_DUO_SLIDING":
                 break;
             // loading coach duo to give advice
             case "COACH_DUO_SLIDING":
@@ -87,6 +100,7 @@ export default class DuolingoSkill extends ReactUtils {
             case "DOACH_DUO":
             case "COACH_DUO":
             case "HARD_MODE_DUO":
+            case "PARTIAL_XP_DUO":
                 this.current_challenge = new DuolingoChallenge();
                 this.current_challenge.click_next();
                 break;
@@ -96,10 +110,17 @@ export default class DuolingoSkill extends ReactUtils {
                 break;
             // results are here!
             case "END_CAROUSEL":
-                this.current_challenge = new DuolingoChallenge();
-                this.current_challenge.click_next();
-                this.current_challenge.click_next();
-                this.current_challenge.click_next();
+                if (this.is_final_level) {
+                    (
+                        document.querySelector('[data-test="cta-button"]') ||
+                        document.querySelector('[data-test="continue-final-level"]')
+                    )?.click();
+                } else {
+                    this.current_challenge = new DuolingoChallenge();
+                    this.current_challenge.click_next();
+                    this.current_challenge.click_next();
+                    this.current_challenge.click_next();
+                }
                 break;
             // little ad that pops up
             case "PLUS_AD":

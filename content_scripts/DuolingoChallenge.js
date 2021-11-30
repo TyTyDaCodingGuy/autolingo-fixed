@@ -76,8 +76,8 @@ export default class DuolingoChallenge extends ReactUtils {
             case "translate":
                 this.solve_translate();
                 break;
-            // fill in the blank
-            case "form":
+            case "assist": // comment dit-on « baba »
+            case "form": // fill in the blank
                 this.solve_form();
                 break;
             case "characterSelect":

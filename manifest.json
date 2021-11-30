@@ -1,6 +1,6 @@
 {
     "name": "Autolingo",
-    "version": "2021.10.28",
+    "version": "2021.11.26",
     "manifest_version": 2,
     "description": "Automatically completes Duolingo lessons so you don't have to!",
     "background": {
@@ -34,12 +34,6 @@
       "default_popup": "popup.html"
     },
     "web_accessible_resources": [
-        "content_scripts/injected.js",
-        "content_scripts/ReactUtils.js",
-        "content_scripts/DuolingoChallenge.js",
-        "content_scripts/DuolingoSkill.js",
-        "content_scripts/main.css",
-
-        "images/diamond-league.png"
+        "*"
     ]
 }

@@ -119,7 +119,7 @@ const inject_autolingo = () => {
                         // on click, final the lesson and let the extension know it's time to autocomplete
                         final_autolingo_skill.onclick = () => {
                             let ds = new DuolingoSkill(skill_node);
-                            ds.start("final-button", true);
+                            ds.start("[class*='_3HhhB _2NolF _275sd _1ZefG _26hHl _1eyFy _26QYy']", true);
                         }
         
                         // show tooltip when hovering over the auto-lesson buttons
@@ -145,7 +145,7 @@ const inject_autolingo = () => {
                     // on click, start the lesson and let the extension know it's time to autocomplete
                     start_autolingo_skill.onclick = () => {
                         let ds = new DuolingoSkill(skill_node);
-                        ds.start("start-button", false);
+                        ds.start("[data-test='start-button']", false);
                     }
     
                     // show tooltip when hovering over the auto-lesson buttons
@@ -189,9 +189,9 @@ const inject_autolingo = () => {
                     const start_checkpoint_button_selector = checkpoint_status == 3
                         ? "checkpoint-practice-button"
                         : "checkpoint-start-button"
-                    
+
                     // start state machine
-                    ds.start(start_checkpoint_button_selector, false); 
+                    ds.start(`[data-test='${start_checkpoint_button_selector}']`, false); 
                 }
 
                 // show tooltip when hovering over the auto-lesson buttons

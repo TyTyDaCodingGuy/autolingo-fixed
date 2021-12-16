@@ -13,12 +13,12 @@ export default class DuolingoSkill extends ReactUtils {
         this.is_final_level = is_final_level;
 
         this.skill_node.children[0]?.click();
-        document.querySelector(`[data-test='${start_button_selector}']`)?.click();
+        document.querySelector(start_button_selector)?.click();
 
         // for legendary lessons
         if (this.is_final_level) {
-            document.querySelector('[data-test="cta-button"]')?.click();
-            document.querySelector('[class="WOZnx _275sd _1ZefG KJuUV"]')?.click(); // TODO find something more reliable
+            document.querySelector('[class="_3HhhB _2NolF _275sd _1ZefG _1M1mb _26QYy"]')?.click(); // TODO find something more reliable
+            document.querySelector('[class="WOZnx _275sd _1ZefG KJuUV"]')?.click();
         }
 
         setTimeout(() => {

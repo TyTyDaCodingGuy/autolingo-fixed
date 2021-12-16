@@ -1,8 +1,8 @@
 var enabled;
 
 const set_badge = (is_enabled) => {
-    chrome.browserAction.setBadgeText({text: is_enabled ? "✓" : "X"});
-    chrome.browserAction.setBadgeBackgroundColor({color: is_enabled ? "green" : "#EC5053"});
+    chrome.action.setBadgeText({text: is_enabled ? "✓" : "X"});
+    chrome.action.setBadgeBackgroundColor({color: is_enabled ? "green" : "#EC5053"});
 }
 
 // check if the extension is enabled and set the badge accordingly

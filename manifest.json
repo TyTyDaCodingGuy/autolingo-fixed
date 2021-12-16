@@ -1,10 +1,10 @@
 {
     "name": "Autolingo",
-    "version": "2021.11.26",
-    "manifest_version": 2,
+    "version": "2021.12.15",
+    "manifest_version": 3,
     "description": "Automatically completes Duolingo lessons so you don't have to!",
     "background": {
-        "page": "background.html"
+        "service_worker": "background.js"
     },
     "permissions": [
         "tabs",
@@ -29,11 +29,12 @@
         "128": "images/icon-128.png",
         "256": "images/icon-256.png"
     },
-    "browser_action": {
+    "action": {
       "default_title": "Autolingo",
       "default_popup": "popup.html"
     },
-    "web_accessible_resources": [
-        "*"
-    ]
+    "web_accessible_resources": [{
+        "resources": ["*"],
+        "matches": ["<all_urls>"]
+    }]
 }

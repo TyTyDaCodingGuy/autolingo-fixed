@@ -431,7 +431,11 @@ export default class DuolingoChallenge extends ReactUtils {
             let player_next_button = document.querySelector("[data-test='player-next']");
 
             // if we can click the button...
-            if (player_next_button && !player_next_button.disabled && !player_next_button.getAttribute("aria-disabled")) {
+            if (
+                player_next_button &&
+                !player_next_button.disabled &&
+                player_next_button.getAttribute("aria-disabled") === 'false')
+            {
 
                 // click it! and decrease the count
                 player_next_button?.click();

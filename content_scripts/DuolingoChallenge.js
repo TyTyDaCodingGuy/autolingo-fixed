@@ -70,6 +70,7 @@ export default class DuolingoChallenge extends ReactUtils {
 
     solve = () => {
         switch (this.challenge_type) {
+            // select the matching pairs
             case "characterMatch":
                 this.solve_character_match();
                 break;
@@ -79,9 +80,6 @@ export default class DuolingoChallenge extends ReactUtils {
             case "assist": // comment dit-on « baba »
             case "form": // fill in the blank
                 this.solve_form();
-                break;
-            case "characterSelect":
-                this.solve_character_select();
                 break;
             // mark the correct meaning
             case "judge":
@@ -97,6 +95,7 @@ export default class DuolingoChallenge extends ReactUtils {
                 break;
             // which one of these is "_____"?
             case "select":
+            case "characterSelect":
                 this.solve_select();
                 break;
             // what do you hear?
@@ -292,7 +291,7 @@ export default class DuolingoChallenge extends ReactUtils {
         // build a map from the text content to the node
         let tap_tokens = {};
         Array.from(tap_token_nodes).forEach(tap_token_node => {
-            let content = tap_token_node.childNodes[0].textContent;
+            let content = tap_token_node.childNodes[1].textContent;
             tap_tokens[content] = tap_token_node;
         })
 
@@ -328,11 +327,6 @@ export default class DuolingoChallenge extends ReactUtils {
         let correct_index = this.challenge_node.correctIndex;
         this.choose_index("[data-test='challenge-choice']", correct_index);
     }
-    
-    solve_character_select = () => {
-        let correct_index = this.challenge_node.correctIndex;
-        this.choose_index("[data-test='challenge-choice-card']", correct_index);
-    }
 
     solve_judge = () => {
         let correct_index = this.challenge_node.correctIndices[0];
@@ -346,7 +340,7 @@ export default class DuolingoChallenge extends ReactUtils {
 
     solve_select = () => {
         let correct_index = this.challenge_node.correctIndex;
-        this.choose_index("[data-test='challenge-choice-card']", correct_index);
+        this.choose_index("[data-test='challenge-choice']", correct_index);
     }
 
     solve_complete_reverse_translation = () => {

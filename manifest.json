@@ -1,8 +1,9 @@
 {
     "name": "Autolingo",
-    "version": "2022.03.07",
+    "version": "2022.03.18",
     "manifest_version": 3,
     "description": "Automatically completes Duolingo lessons so you don't have to!",
+    "homepage_url": "https://chrome.google.com/webstore/detail/autolingo/jppnahnlneednhaefhbfgpamgbecpfdd",
     "background": {
         "service_worker": "background.js"
     },
